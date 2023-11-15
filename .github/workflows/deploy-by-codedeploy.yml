@@ -20,7 +20,5 @@ jobs:
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           aws-region: ap-northeast-2
 
-      - name: Upload Zip and Deploy
-        run: |
-          aws s3 cp Deploy.zip s3://sol-codedeploy-demo/Deploy.zip |
-          aws deploy create-deployment-group --application-name CodeDeployGitHubDemo-App --deployment-group-name CodeDeployGitHubDemo --ignore-application-stop-failures --s3-location bundleType=zip,bucket=sol-codedeploy-demo --ec2-tag-filters Key=Environment,Type=KEY_AND_VALUE,Value=Development --service-role-arn arn:aws:iam::533385215525:role/CodeDeployServiceRoleForEC2
+      - name: Upload Zip
+        run: aws s3 cp Deploy.zip s3://sol-codedeploy-demo/Deploy.zip
